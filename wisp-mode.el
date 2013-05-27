@@ -48,17 +48,13 @@ Optional argument CHARS Characters to add to the syntax table."
                   `(modify-syntax-entry ,char "w" wisp-mode-syntax-table))
                 chars)))
 
-(defun wisp-mode/strip-node-colors
-  (output)
-  (replace-regexp-in-string "\033\\[[0-9]+[GJK]" "" output))
-
 ;;;###autoload
 (define-derived-mode wisp-mode clojure-mode "Wisp"
   "Major mode for Wisp"
   (wispscript-mode/add-word-chars ?_ ?~ ?. ?- ?> ?< ?! ??)
-  (setq comint-use-prompt-regexp 't)
-  (setq comint-prompt-regexp "^=> ")
-  (add-to-list 'comint-preoutput-filter-functions 'wisp-mode/strip-node-colors)
+  (add-to-list 'comint-prompt-regexp "=>")
+  (add-to-list 'comint-preoutput-filter-functions (lambda (output)
+						           (replace-regexp-in-string "\033\\[[0-9]+[GJK]" "" output)))
   (set (make-local-variable 'inferior-lisp-program) "wisp"))
 
 ;;;###autoload
