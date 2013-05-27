@@ -17,17 +17,6 @@
 (require 'clojure-mode)
 (require 'font-lock)
 
-;;; Code:
-(defgroup wisp nil
-  "A major mode for wisp"
-  :group 'languages)
-
-;;;###autoload
-(defcustom wisp-mode/file-extension ".wisp"
-  "Wisp file extension."
-  :type 'string
-  :group 'wisp)
-
 (defmacro wispscript-mode/add-word-chars (&rest chars)
   "Convenient way to add many word-constituent characters to the syntax table.
 
@@ -47,8 +36,7 @@ Optional argument CHARS Characters to add to the syntax table."
   (set (make-local-variable 'inferior-lisp-program) "wisp"))
 
 ;;;###autoload
-(when wisp-mode/file-extension
-	(add-to-list 'auto-mode-alist (cons (rx-to-string wisp-mode/file-extension) 'wisp-mode)))
+(add-to-list 'auto-mode-alist (cons "\\.wisp\\'" 'wisp-mode))
 
 ;;;###autoload
 (defun wisp-mode/compile ()
