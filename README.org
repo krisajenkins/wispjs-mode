@@ -2,6 +2,8 @@
 
 A major mode for the Lisp->JavaScript language [[http://jeditoolkit.com/wisp/][Wisp]].
 
+Provides syntax highlighting, an =inferior-lisp= repl, and a compile command.
+
 ** Installation
 
 =M-x package-install wisp-mode=
@@ -19,6 +21,11 @@ If not, add this to your =.emacs= first:
 /(You only need one of the =package-archives= lines, Marmalade or MELPA, but there's no harm in having both.)/
 
 /Alternatively/, just grab the single =wisp-mode.el= and install that in your preferred way.
+
+** Usage
+
+=M-x inferior-lisp= will start a REPL.
+=M-x wisp-mode/compile= will compile the file (by default to the same destination, with a `.js` suffix.)
 
 ** Status
 
