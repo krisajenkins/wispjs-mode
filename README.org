@@ -1,0 +1,25 @@
+* Wisp Mode
+
+A major mode for the Lisp->JavaScript language [[http://jeditoolkit.com/wisp/][Wisp]].
+
+** Installation
+
+=M-x package-install wisp-mode=
+
+...if you're hooked up to [[http://marmalade-repo.org/][Marmalade]] or [[http://melpa.milkbox.net/][MELPA]].
+If not, add this to your =.emacs= first:
+
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(package-initialize)
+#+END_SRC
+
+/(You only need one of the =package-archives= lines, Marmalade or MELPA, but there's no harm in having both.)/
+
+/Alternatively/, just grab the single =wisp-mode.el= and install that in your preferred way.
+
+** Status
+
+Ready to use, but fairly basic. Feedback welcomed.
