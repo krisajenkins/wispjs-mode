@@ -8,14 +8,13 @@
 ;; URL: https://github.com/krisajenkins/wisp-mode
 ;; Created: 18th April 2013
 ;; Version: 0.1.0
-;; Package-Requires: ((clojure-mode "0") (nrepl-eval-sexp-fu "0"))
+;; Package-Requires: ((clojure-mode "0"))
 
 ;;; Commentary:
 ;;
 ;; A major mode for the Lisp->JavaScript language Wisp: http://jeditoolkit.com/wisp/
 
 (require 'clojure-mode)
-(require 'nrepl-eval-sexp-fu)
 (require 'font-lock)
 
 ;;; Code:
@@ -28,16 +27,6 @@
   "Wisp file extension."
   :type 'string
   :group 'wisp)
-
-;;;###autoload
-(defadvice lisp-eval-region (around lisp-eval-region-flash activate)
-  "Flash any calls to lisp-eval-region (and the functions that depend on it, like lisp-eval-defun)."
-  (let* ((start (ad-get-arg 0))
-		 (end (ad-get-arg 1))
-		 (flasher (nrepl-eval-sexp-fu-flash (cons start end)))
-		 (hi (cadr flasher))
-		 (unhi (caddr flasher)))
-	(nrepl-eval-sexp-fu-flash-doit-simple '(lambda () ad-do-it) hi unhi)))
 
 (defmacro wispscript-mode/add-word-chars (&rest chars)
   "Convenient way to add many word-constituent characters to the syntax table.
