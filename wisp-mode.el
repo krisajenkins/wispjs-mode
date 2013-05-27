@@ -45,7 +45,7 @@
 Optional argument CHARS Characters to add to the syntax table."
   (cons 'progn
         (mapcar (lambda (char)
-                  `(modify-syntax-entry ,char "w" wispscript-mode-syntax-table))
+                  `(modify-syntax-entry ,char "w" wisp-mode-syntax-table))
                 chars)))
 
 ;;;###autoload
