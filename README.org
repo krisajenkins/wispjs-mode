@@ -6,12 +6,12 @@ Provides syntax highlighting, an =inferior-lisp= REPL, and a compile command.
 
 ** Installation
 
-#+BEGIN_SRC emacs-lisp
-M-x package-install
-wisp-mode
-#+END_SRC
+If you're hooked up to [[http://melpa.milkbox.net/][MELPA]]:
 
-...if you're hooked up to [[http://melpa.milkbox.net/][MELPA]].
+#+BEGIN_EXAMPLE
+M-x package-refresh-contents
+M-x package-install RET wisp-mode
+#+END_EXAMPLE
 If not, add this to your =.emacs= first:
 
 #+BEGIN_SRC emacs-lisp
