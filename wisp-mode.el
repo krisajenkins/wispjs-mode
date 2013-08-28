@@ -17,22 +17,17 @@
 (require 'clojure-mode)
 (require 'font-lock)
 
-(defmacro wispscript-mode/add-word-chars (&rest chars)
-  "Convenient way to add many word-constituent characters to the syntax table.
-
-Optional argument CHARS Characters to add to the syntax table."
-  (cons 'progn
-        (mapcar (lambda (char)
-                  `(modify-syntax-entry ,char "w" wisp-mode-syntax-table))
-                chars)))
+;;; Code:
 
 ;;;###autoload
 (define-derived-mode wisp-mode clojure-mode "Wisp"
   "Major mode for Wisp"
-  (wispscript-mode/add-word-chars ?_ ?~ ?. ?- ?> ?< ?! ??)
+  (dolist '(lambda (char)
+	     (modify-syntax-entry char "w" wisp-mode-syntax-table))
+    '(?_ ?~ ?. ?- ?> ?< ?! ??))
   (add-to-list 'comint-prompt-regexp "=>")
   (add-to-list 'comint-preoutput-filter-functions (lambda (output)
-						           (replace-regexp-in-string "\033\\[[0-9]+[GJK]" "" output)))
+						    (replace-regexp-in-string "\033\\[[0-9]+[GJK]" "" output)))
   (set (make-local-variable 'inferior-lisp-program) "wisp"))
 
 ;;;###autoload
