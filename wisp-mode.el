@@ -38,12 +38,12 @@
   "Invoke the Wisp compiler for the current buffer."
   (interactive)
   (let ((output-name (format "%s.js" (file-name-sans-extension (file-relative-name buffer-file-name)))))
-	(shell-command-on-region (point-min)
-							 (point-max)
-							 "wisp"
-							 output-name)
-	(with-current-buffer (get-buffer output-name)
-	  (save-buffer)))
+    (shell-command-on-region (point-min)
+			     (point-max)
+			     "wisp"
+			     output-name)
+    (with-current-buffer (get-buffer output-name)
+      (save-buffer)))
   (message "Compiled."))
 
 (provide 'wisp-mode)
