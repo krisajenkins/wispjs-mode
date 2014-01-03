@@ -1,4 +1,4 @@
-* Wisp Mode
+* WispJS Mode
 
 A major mode for the Lisp-to-JavaScript language [[http://jeditoolkit.com/wisp/][Wisp]].
 
@@ -10,7 +10,7 @@ If you're hooked up to [[http://melpa.milkbox.net/][MELPA]]:
 
 #+BEGIN_EXAMPLE
 M-x package-refresh-contents
-M-x package-install RET wisp-mode
+M-x package-install RET wispjs-mode
 #+END_EXAMPLE
 If not, add this to your =.emacs= first:
 
@@ -20,14 +20,20 @@ If not, add this to your =.emacs= first:
 (package-initialize)
 #+END_SRC
 
-/Alternatively/, just grab the single =wisp-mode.el= and install that in your preferred way.
+/Alternatively/, just grab the single =wispjs-mode.el= and install that in your preferred way.
 
 ** Usage
 
 =M-x inferior-lisp= will start a REPL.
 
-=M-x wisp-mode/compile= will compile the file (by default to the same destination, with a =.js= suffix).
+=M-x wispjs-mode/compile= will compile the file (by default to the same destination, with a =.js= suffix).
 
 ** Status
 
 Ready to use, but fairly basic. Feedback welcomed.
+
+** History
+
+This package was originally named =wisp-mode=, but was renamed to
+=wispjs-mode= to avoid confusion with nother Emacs package for the
+"whitespace to lisp" preprocessor called [[https://bitbucket.org/ArneBab/wisp][Wisp]].

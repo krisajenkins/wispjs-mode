@@ -1,13 +1,13 @@
-;;; wisp-mode.el --- Major mode for Wisp code.
+;;; wispjs-mode.el --- Major mode for Wisp code.
 
 ;; Copyright 2013 Kris Jenkins
 
 ;; Author: Kris Jenkins <krisajenkins@gmail.com>
 ;; Maintainer: Kris Jenkins <krisajenkins@gmail.com>
 ;; Author: Kris Jenkins
-;; URL: https://github.com/krisajenkins/wisp-mode
+;; URL: https://github.com/krisajenkins/wispjs-mode
 ;; Created: 18th April 2013
-;; Version: 0.1.0
+;; Version: 0.2.0
 ;; Package-Requires: ((clojure-mode "0"))
 
 ;;; Commentary:
@@ -20,21 +20,22 @@
 ;;; Code:
 
 ;;;###autoload
-(define-derived-mode wisp-mode clojure-mode "Wisp"
+(define-derived-mode wispjs-mode clojure-mode "Wisp"
   "Major mode for Wisp"
   (dolist '(lambda (char)
-	     (modify-syntax-entry char "w" wisp-mode-syntax-table))
+	     (modify-syntax-entry char "w" wispjs-mode-syntax-table))
     '(?_ ?~ ?. ?- ?> ?< ?! ??))
   (add-to-list 'comint-prompt-regexp "=>")
-  (add-to-list 'comint-preoutput-filter-functions (lambda (output)
-						    (replace-regexp-in-string "\033\\[[0-9]+[GJK]" "" output)))
-  (set (make-local-variable 'inferior-lisp-program) "wisp"))
+  (add-to-list 'comint-preoutput-filter-functions
+	       (lambda (output)
+		 (replace-regexp-in-string "\033\\[[0-9]+[GJK]" "" output)))
+  (setq-local inferior-lisp-program "wisp"))
 
 ;;;###autoload
-(add-to-list 'auto-mode-alist (cons "\\.wisp\\'" 'wisp-mode))
+(add-to-list 'auto-mode-alist (cons "\\.wisp\\'" 'wispjs-mode))
 
 ;;;###autoload
-(defun wisp-mode/compile ()
+(defun wispjs-mode/compile ()
   "Invoke the Wisp compiler for the current buffer."
   (interactive)
   (let ((output-name (format "%s.js" (file-name-sans-extension (file-relative-name buffer-file-name)))))
@@ -46,5 +47,5 @@
       (save-buffer)))
   (message "Compiled."))
 
-(provide 'wisp-mode)
-;;; wisp-mode.el ends here
+(provide 'wispjs-mode)
+;;; wispjs-mode.el ends here
